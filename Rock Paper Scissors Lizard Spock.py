@@ -1,10 +1,3 @@
-# Referecnce to game
-# 0 - rock
-# 1 - Spock
-# 2 - paper
-# 3 - lizard
-# 4 - scissors
-
 import random
 
 
