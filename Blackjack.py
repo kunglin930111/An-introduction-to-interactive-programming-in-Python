@@ -1,7 +1,6 @@
 import simplegui
 import random
 
-# load card sprite - 949x392 - source: jfitz.com
 CARD_SIZE = (72, 96)
 CARD_CENTER = (36, 48)
 card_images = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/cards_jfitz.png")
@@ -10,18 +9,15 @@ CARD_BACK_SIZE = (72, 96)
 CARD_BACK_CENTER = (36, 48)
 card_back = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/card_jfitz_back.png")    
 
-# initialize some useful global variables
 in_play = False
 score = 0
 to_player = "Hit or Stand?"
 msg = ""
 
-# define globals for cards
 SUITS = ('C', 'S', 'H', 'D')
 RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K')
 VALUES = {'A':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10, 'Q':10, 'K':10}
 
-# define card class
 class Card:
     def __init__(self, suit, rank):
         if (suit in SUITS) and (rank in RANKS):
@@ -56,7 +52,6 @@ class Card:
                            pos[1] + CARD_BACK_CENTER[1] + 1], 
                           CARD_BACK_SIZE)
         
-# define hand class
 class Hand:
     def __init__(self):
         self.cards = []
@@ -86,7 +81,6 @@ class Hand:
             pos[0] = pos[0] + CARD_SIZE[0] + 20
             card.draw(canvas, pos)
         
-# define deck class 
 class Deck:
     def __init__(self):
         self.cards = []
@@ -106,7 +100,6 @@ class Deck:
             strRepforCard = strRepforCard + str(card) + " "
         return "Deck contains " + strRepforCard.strip()
 
-#define event handlers for buttons
 def deal():
     global in_play, myDeck, playerHand, dealerHand, to_player, score, show_player, show_dealer, msg
     if in_play:
@@ -161,8 +154,7 @@ def stand():
             score -= 1
             to_player = "New deal?"
             in_play = False
-
-# draw handler    
+   
 def draw(canvas):
     canvas.draw_text("Blackjack", (60, 100), 40, "White")
     lDealer = canvas.draw_text(show_dealer, (60, 185), 33, "Black")
@@ -176,7 +168,6 @@ def draw(canvas):
         dealerHand.cards[0].drawBack(canvas, [28, 200])
         
 
-# initialization frame
 frame = simplegui.create_frame("Blackjack", 600, 600)
 frame.set_canvas_background("Green")
 
@@ -186,6 +177,5 @@ frame.add_button("Hit",  hit, 200)
 frame.add_button("Stand", stand, 200)
 frame.set_draw_handler(draw)
 
-# get things rolling
 frame.start()
 deal()
