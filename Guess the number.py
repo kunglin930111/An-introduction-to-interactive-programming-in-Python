@@ -72,5 +72,3 @@ frame.add_button("Range is  [0,1000)", range1000, 100)
 frame.add_input("Enter the value",input_guess, 100)
 frame.start() 
 new_game()
-
-#Cheers
